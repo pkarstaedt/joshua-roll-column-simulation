@@ -1,0 +1,6 @@
+*.psd
+*.psb
+old/
+__pycache__/
+*.obj
+*.mtl
