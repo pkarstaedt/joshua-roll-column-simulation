@@ -30,10 +30,10 @@ from PIL import Image, ImageEnhance, ImageFilter
 # ──────────────────────────────────────────────────────────────────────────────
 
 # Source colour image
-IMAGE = "jc_roll_small_no_watermark.jpg"
+IMAGE = "jc_roll_small.jpg"
 
 # Depth map image (greyscale or colour)
-DEPTH = "jc_roll_small_no_watermark_depth.png"
+DEPTH = "jc_roll_small_depth.png"
 
 # Contrast multiplier applied to the depth map before meshing.
 # 1.0 = no change.  Try 1.5–3.0 to sharpen a flat-looking depth map.
@@ -1916,12 +1916,12 @@ def run_viewer(verts, normals, uvs, indices, colour: np.ndarray,
     try:
         window = pyglet.window.Window(
             width=1280, height=720,
-            caption="Depth 3D Viewer  |  drag=orbit  right-drag=pan  scroll=zoom  A=auto-rotate  E=export  R=reset  Q=quit",
+            caption="Joshua Roll Column Simulator  |  drag=orbit  right-drag=pan  scroll=zoom  A=auto-rotate  E=export  R=reset  Q=quit",
             resizable=True, config=config)
     except Exception:
         window = pyglet.window.Window(
             width=1280, height=720,
-            caption="Depth 3D Viewer",
+            caption="Joshua Roll Column Simulator",
             resizable=True)
 
     # ── GL state (initialised lazily on first draw, inside the GL context) ──
