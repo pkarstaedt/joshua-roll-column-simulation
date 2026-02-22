@@ -1,6 +1,6 @@
 *.psd
 *.psb
-old/
+supporting_material/
 __pycache__/
 *.obj
 *.mtl

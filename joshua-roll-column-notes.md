@@ -24,10 +24,12 @@ remove the text elements from the image to make it ready to be transformed into 
 ### Task 3: Add depth to the image. 
 Figures and background should all be at a correct depth to indicate what is in the foreground and what in the background. The photo becomes a sculpture.
 
+Create a script that creates a 3D model from an image and its depth map. the script should also be able to change the contrast of the depth map for preprocessing, as well as resizing the depth map to the dimensions of the original file before applying it. the intensity of the depth effect should be configurable. At the end of the creation, show the resulting 3D model with pyglet. Allow for an export that allows the 3D model to be used in Blender.
+
 ### Task 4: Create a 3D model
 As a basis, we want a 3d model of a column of about 10 to 15 m height and 0.5 m diameter. Overlay the long image with depth on the column, wrapping it around the column at a 9 degree angle so that it snakes upwards
 
-Create python script that creates a 3d model column. Apply on it the texture jc_roll.jpg  in a way so that it wraps around the column in a helical way and snakes upwards, at an angle of about 9 degrees. calculate the height of the column so that it is appropriate for the entire texture. the output should be glb. ignore all existing python scripts in the directory.
+Create python script that creates a 3d model column with applied on it the texture jc_roll_small.jpg  in a way so that it wraps around the column in a helical way and snakes upwards, at an angle of about 9 degrees. meaning it is applied obliquely around the column, with the bottom left corner of the image at the feed of the column and the image wrapping around it at an angle. the top right corner of the image should be the top of the column. calculate the height of the column so that it is appropriate for the entire texture. the result is like a triumphal column, like the trajan column for example. use pyglet to show the finished model. ignore all existing python scripts in the directory, their approach has shown not to work. start from zero.
 
 ### Task 5: Add a period correct base to the column
 To make it nicer and prepare for 3D printing  
