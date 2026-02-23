@@ -19,8 +19,8 @@ Procedural 3D reconstruction workflow for wrapping the [Joshua Roll](https://en.
 - The depth map used in this repo was created with ComfyUI and Lotus.
 
 ## Preview
-![View of triumphal column](media/joshua_roll_triumphal_column.png) ![Another View of triumphal column](media/joshua_roll_triumphal_column_2.png) ![View of normal column](media/joshua_roll_column.png)
-![Video test](media/media/joshua_roll_column.mp4)
+![View of triumphal column](media/joshua_roll_triumphal_column.png) ![View of normal column](media/joshua_roll_column.png)
+[View of triumphal column](media/media/joshua_roll_column.mp4) [Video of "simple" column](media/media/joshua_roll_column.mp4)
 
 ## Main Script
 - Primary entry point: `joshua_roll_render.py`
