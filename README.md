@@ -3,14 +3,12 @@
 Procedural 3D reconstruction workflow for wrapping the [Joshua Roll](https://en.wikipedia.org/wiki/Joshua_Roll) imagery onto a triumphal column, as was originally intended.
 
 ## Intro 
-- 10m long, 30cm, 10th century, 
-- joshua's campaign in the holy land
-- heraclius campaign in the last great war, 603 to 
-- triumphal column, 10.5 - 14 meters
-- reading book, chapter 10.5
-- very intriguing
-- wanted to try out
-`[Write a short paragraph here about why you decided to build this project.]`
+The Joshua roll is a piece of artwork from the 10th century, about 10m long and 30cm high. It's supposed to represent Joshua's campaign in the holy land, but probably a copy of an earlier work referring to Heraclius' campaign in the Roman-Sassanid war of 602 to 628. 
+
+I heard about it in James Howard-Johnston's "The Last Great War of Antiquity" where it was mentioned alongside a theory by Steven Wander that in actuality tt served as a draft for a memorial (triumphal) column. 
+
+I was incredibly intrigued by what is admittedly a fairly recondite bit of history trivia. But I thought to myself, why not try to visualize how it would actually have looked like? This repo is the documentation of the outcome of my efforts. The result was a nice little weekend project. 
+
 
 
 ## Provenance and Source Notes
@@ -20,6 +18,7 @@ Procedural 3D reconstruction workflow for wrapping the [Joshua Roll](https://en.
 
 ## Preview
 ![View of triumphal column](media/joshua_roll_triumphal_column.png) ![View of normal column](media/joshua_roll_column.png)
+
 [View of triumphal column](media/media/joshua_roll_column.mp4) [Video of "simple" column](media/media/joshua_roll_column.mp4)
 
 ## Main Script
