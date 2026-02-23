@@ -23,6 +23,64 @@ Feel free to launch the scripts (details below) and check out what could have be
 ![View of triumphal column](media/joshua_roll_triumphal_column.gif) ![View of normal column](media/joshua_roll_column.gif)
 
 
+## Installation
+Use Python 3.10+ (3.11/3.12 recommended).
+
+Install required packages:
+
+```bash
+pip install numpy pillow pyglet trimesh
+```
+
+Optional extras for GLB handling in some environments:
+
+```bash
+pip install "trimesh[easy]"
+```
+
+## Quick Start
+1. Put the required texture/depth/model files in the repository root (or update paths in config).
+2. Edit the config block at the top of either script:
+- `joshua_roll_render.py` for orbit-style viewing
+- `joshua_roll_render_walking.py` for walkable viewing
+- `joshua_roll_render_column.py` for a more conventional column-oriented setup
+3. The default texture in the config block is `jc_roll_small.jpg`. Try `jc_roll_small_bw.jpg` for a more marble look of the column itself.
+4. Run one of:
+
+```bash
+python joshua_roll_render.py
+python joshua_roll_render_walking.py
+python joshua_roll_render_column.py
+```
+The texture resolution is downsampled 4x for performance reasons. If you want the high-res goodness, make sure to set downsample=2 (or even 1). Requires powerful pc! 
+
+## Viewer Controls (`joshua_roll_render.py`)
+- Left-drag: orbit
+- Right-drag: pan
+- Scroll: zoom
+- `R`: reset camera
+- `A`: toggle auto-rotate
+- `E`: export using current `EXPORT` setting
+- `Q` or `Esc`: quit
+
+## Walkable Controls (`joshua_roll_render_walking.py`)
+- Mouse move: look around
+- `W A S D`: camera-relative move
+- Hold `Space`: fly upward
+- Double-tap `Space`: drop back to ground height
+- `Tab`: toggle mouse capture
+- `R`: reset camera
+- `E`: export using current `EXPORT` setting
+- `Q` or `Esc`: quit
+
+## Export
+Set `EXPORT` in the config:
+- `EXPORT = "obj"`: writes `OUT.obj` + `OUT.mtl`
+- `EXPORT = "glb"`: writes `OUT.glb`
+- `EXPORT = "both"`: writes both formats
+- `EXPORT = "none"`: disables export hotkey
+
+
 ## Main Script
 - Primary entry point: `joshua_roll_render.py`
 - Purpose:
@@ -71,62 +129,6 @@ Feel free to launch the scripts (details below) and check out what could have be
   - `glb`,
   - `both`,
   - `none`.
-
-## Installation
-Use Python 3.10+ (3.11/3.12 recommended).
-
-Install required packages:
-
-```bash
-pip install numpy pillow pyglet trimesh
-```
-
-Optional extras for GLB handling in some environments:
-
-```bash
-pip install "trimesh[easy]"
-```
-
-## Quick Start
-1. Put the required texture/depth/model files in the repository root (or update paths in config).
-2. Edit the config block at the top of either script:
-- `joshua_roll_render.py` for orbit-style viewing
-- `joshua_roll_render_walking.py` for walkable viewing
-- `joshua_roll_render_column.py` for a more conventional column-oriented setup
-The texture resolution is downsampled 4x for performance reasons. If you want the high-res goodness, make sure to set downsample=2 (or even 1). Requires powerful pc! 
-3. Run one of:
-
-```bash
-python joshua_roll_render.py
-python joshua_roll_render_walking.py
-python joshua_roll_render_column.py
-```
-
-## Viewer Controls (`joshua_roll_render.py`)
-- Left-drag: orbit
-- Right-drag: pan
-- Scroll: zoom
-- `R`: reset camera
-- `A`: toggle auto-rotate
-- `E`: export using current `EXPORT` setting
-- `Q` or `Esc`: quit
-
-## Walkable Controls (`joshua_roll_render_walking.py`)
-- Mouse move: look around
-- `W A S D`: camera-relative move
-- Hold `Space`: fly upward
-- Double-tap `Space`: drop back to ground height
-- `Tab`: toggle mouse capture
-- `R`: reset camera
-- `E`: export using current `EXPORT` setting
-- `Q` or `Esc`: quit
-
-## Export
-Set `EXPORT` in the config:
-- `EXPORT = "obj"`: writes `OUT.obj` + `OUT.mtl`
-- `EXPORT = "glb"`: writes `OUT.glb`
-- `EXPORT = "both"`: writes both formats
-- `EXPORT = "none"`: disables export hotkey
 
 ## Typical Workflow
 1. Build/clean source strip imagery.
