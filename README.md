@@ -19,7 +19,7 @@ I was incredibly intrigued by what is admittedly a fairly recondite bit of histo
 ## Preview
 ![View of triumphal column](media/joshua_roll_triumphal_column.png) ![View of normal column](media/joshua_roll_column.png)
 
-[View of triumphal column](media/media/joshua_roll_column.mp4) [Video of "simple" column](media/media/joshua_roll_column.mp4)
+[View of triumphal column](media/joshua_roll_column.mp4) [Video of "simple" column](media/joshua_roll_column.mp4)
 
 ## Main Script
 - Primary entry point: `joshua_roll_render.py`
