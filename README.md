@@ -9,7 +9,7 @@ I heard about it in James Howard-Johnston's "The Last Great War of Antiquity" wh
 
 I was incredibly intrigued by what is admittedly a fairly recondite bit of history trivia. But I thought to myself, why not try to visualize how it would actually have looked like? This repo is the documentation of the outcome of my efforts.
 
-Feel free to launch the scripts (details below) and check out what could have been.
+Feel free to launch the scripts (details below) and check out the "column" version inspired by the [Bernward Column](https://en.wikipedia.org/wiki/Bernward_Column) or a more majestic view inspired by [Trajan's Column](https://en.wikipedia.org/wiki/Trajan%27s_Column).
 
 
 
