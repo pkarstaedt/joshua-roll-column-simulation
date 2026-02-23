@@ -7,7 +7,9 @@ The Joshua roll is a piece of artwork from the 10th century, about 10m long and 
 
 I heard about it in James Howard-Johnston's "The Last Great War of Antiquity" where it was mentioned alongside a theory by Steven Wander that in actuality tt served as a draft for a memorial (triumphal) column. 
 
-I was incredibly intrigued by what is admittedly a fairly recondite bit of history trivia. But I thought to myself, why not try to visualize how it would actually have looked like? This repo is the documentation of the outcome of my efforts. The result was a nice little weekend project. 
+I was incredibly intrigued by what is admittedly a fairly recondite bit of history trivia. But I thought to myself, why not try to visualize how it would actually have looked like? This repo is the documentation of the outcome of my efforts.
+
+Feel free to launch the scripts (details below) and get up close to observe 
 
 
 
@@ -17,9 +19,8 @@ I was incredibly intrigued by what is admittedly a fairly recondite bit of histo
 - The depth map used in this repo was created with ComfyUI and Lotus.
 
 ## Preview
-![View of triumphal column](media/joshua_roll_triumphal_column.png) ![View of normal column](media/joshua_roll_column.png)
+![View of triumphal column](media/joshua_roll_triumphal_column.gif) ![View of normal column](media/joshua_roll_column.gif)
 
-[View of triumphal column](media/joshua_roll_column.mp4) [Video of "simple" column](media/joshua_roll_column.mp4)
 
 ## Main Script
 - Primary entry point: `joshua_roll_render.py`
