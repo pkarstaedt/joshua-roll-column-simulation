@@ -17,7 +17,7 @@ Feel free to launch the scripts (details below) and check out what could have be
 - The Joshua Roll source images in this project come from the [Vatican Library](https://digi.vatlib.it/view/MSS_Pal.gr.431.pt.B).
 - The 15 source images were combined and lightly edited by the repository author to make transitions between individual pictures less visible.
 - The depth map used in this repo was created with ComfyUI and Lotus.
-- The plinth, capital and sculpture of the model are obviously absolutely ahistorical for a 6th century byzantine triumphal column.
+- The plinth, capital(s) and sculpture of the model are obviously absolutely ahistorical for a 6th century byzantine triumphal column.
 
 ## Preview
 ![View of triumphal column](media/joshua_roll_triumphal_column.gif) ![View of normal column](media/joshua_roll_column.gif)
