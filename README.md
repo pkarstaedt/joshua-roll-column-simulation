@@ -39,13 +39,12 @@ pip install "trimesh[easy]"
 ```
 
 ## Quick Start
-1. Put the required texture/depth/model files in the repository root (or update paths in config).
-2. Edit the config block at the top of either script:
+1. Edit the config block at the top of either script:
 - `joshua_roll_render.py` for orbit-style viewing
 - `joshua_roll_render_walking.py` for walkable viewing
 - `joshua_roll_render_column.py` for a more conventional column-oriented setup
-3. The default texture in the config block is `jc_roll_small.jpg`. Try `jc_roll_small_bw.jpg` for a more marble look of the column itself.
-4. Run one of:
+2. The default texture of the Joshua Scroll in the config block is `jc_roll_small.jpg`. Try `jc_roll_small_bw.jpg` for a more marble look of the column itself.
+3. Run one of:
 
 ```bash
 python joshua_roll_render.py
@@ -141,3 +140,4 @@ Set `EXPORT` in the config:
 ## Notes
 - The script is heavily config-driven; most behavior is controlled at the top of `joshua_roll_render.py`.
 - `joshua_roll_render_walking.py` shares most config behavior with the main script, but uses a first-person walkable viewer.
+- Could use an improvement of the depth map for an even more sculpural look.
