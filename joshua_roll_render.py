@@ -47,14 +47,14 @@ DEPTH_THRESHOLD = 0.4
 # Blur radius applied to the depth map after thresholding (in pixels, pre-downsample).
 # Softens the transitions between raised and flat areas.
 # 0 = disabled.  Try 2–10 for gentle feathering, 20–50 for very soft edges.
-BLUR_RADIUS = 4
+BLUR_RADIUS = 3
 
 # Z-displacement intensity in world units.
 # In column mode (WRAP_COLUMN=True), R=1.0 by default, so:
 #   0.05 → ~5% protrusion  (subtle bas-relief)
 #   0.10 → ~10% protrusion (strong relief, like Trajan's Column)
 # In flat mode these are arbitrary scene units (0.2–0.5 works well).
-DEPTH_SCALE = 0.07
+DEPTH_SCALE = 0.09
 
 # Thickness of the solid backing plate in world units.
 # In column mode this is the shell thickness (inward from the surface).
@@ -118,8 +118,8 @@ BASE_TOP_STEP_RUN = 0.2
 BASE_TOP_STEP_HEIGHT = 0.3
 
 # Optional dedicated texture/depth for the top plinth side band.
-PLINTH_SIDE_IMAGE = "plinth_side.png"
-PLINTH_SIDE_DEPTH = "plinth_side_depth.png"
+PLINTH_SIDE_IMAGE = "textures/plinth_side.png"
+PLINTH_SIDE_DEPTH = "textures/plinth_side_depth.png"
 # Outward relief depth on the top plinth side (world units).
 PLINTH_SIDE_DEPTH_SCALE = 0.4
 # Tessellation for plinth side displacement mapping.
@@ -155,14 +155,14 @@ CAPITAL_WAVE_AMPLITUDE = 0.06
 CAPITAL_ABACUS_OVERHANG = 0.05
 CAPITAL_ABACUS_HEIGHT = 0.32
 # Optional dedicated texture for capital sides.
-CAPITAL_TEXTURE_IMAGE = "plinth_side.png"
+CAPITAL_TEXTURE_IMAGE = "textures/plinth_side.png"
 CAPITAL_TEXTURE_FLIP_V = False
 CAPITAL_TEXTURE_BLUR_RADIUS = 20.0
 CAPITAL_TEXTURE_WRAP_PER_SIDE = False
 
 # Optional external GLB statue placed above the capital.
 ADD_TOP_STATUE = True
-TOP_STATUE_GLB = "theodosius.glb"
+TOP_STATUE_GLB = "textures/theodosius.glb"
 # Statue height as a multiple of CAPITAL_HEIGHT.
 TOP_STATUE_HEIGHT_MULT = 2.9
 # Extra vertical gap above capital top.
@@ -1816,7 +1816,8 @@ def run_viewer(verts, normals, uvs, indices, colour: np.ndarray,
                col_height: float = 0.0,
                lip_tri_mask: np.ndarray = None,
                statue_tri_mask: np.ndarray = None,
-               statue_tex_rgb: np.ndarray = None):
+               statue_tex_rgb: np.ndarray = None,
+               cleanup_paths=None):
     """
     Opens an interactive pyglet window showing the 3-D mesh.
     Uses OpenGL immediate-mode via pyglet's low-level GL bindings so that
@@ -1861,6 +1862,25 @@ def run_viewer(verts, normals, uvs, indices, colour: np.ndarray,
         return
 
     # ── flatten arrays for OpenGL ──────────────────────────────────────────
+    cleanup_candidates = []
+    if cleanup_paths is not None:
+        for p in cleanup_paths:
+            if isinstance(p, str) and p.strip():
+                cleanup_candidates.append(p)
+    cleanup_done = {"value": False}
+
+    def cleanup_temp_files():
+        if cleanup_done["value"]:
+            return
+        cleanup_done["value"] = True
+        for p in sorted(set(cleanup_candidates)):
+            try:
+                if os.path.isfile(p):
+                    os.remove(p)
+                    print(f"[viewer] Removed temp file: {p}")
+            except Exception as e:
+                print(f"[viewer] Could not remove temp file '{p}': {e}")
+
     verts_f   = verts.astype(np.float32).ravel()
     normals_f = normals.astype(np.float32).ravel()
     uvs_f     = uvs.astype(np.float32).ravel()
@@ -2143,6 +2163,7 @@ def run_viewer(verts, normals, uvs, indices, colour: np.ndarray,
     def on_key_press(symbol, modifiers):
         from pyglet.window import key
         if symbol in (key.Q, key.ESCAPE):
+            cleanup_temp_files()
             window.close()
         elif symbol == key.R:
             reset_camera()
@@ -2165,6 +2186,10 @@ def run_viewer(verts, normals, uvs, indices, colour: np.ndarray,
     def on_resize(width, height):
         from pyglet.gl import glViewport
         glViewport(0, 0, width, height)
+
+    @window.event
+    def on_close():
+        cleanup_temp_files()
 
     print("[viewer] Opening 3D viewer …  (E=export  R=reset  Q/Esc=quit)")
     # In some IDE run modes, stale exit state can leak between runs.
@@ -2196,6 +2221,8 @@ def run_viewer(verts, normals, uvs, indices, colour: np.ndarray,
             except Exception:
                 pass
         pyglet.clock.tick()
+
+    cleanup_temp_files()
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -2275,6 +2302,7 @@ def main():
 
     # Optional plinth texture/depth setup + dedicated base color from plinth image.
     render_image_path = IMAGE
+    viewer_cleanup_paths = []
     uv_rect_main = (0.0, 0.0, 1.0, 1.0)
     uv_rect_base = (0.0, 0.0, 1.0, 1.0)
     uv_rect_plinth = (0.0, 0.0, 1.0, 1.0)
@@ -2297,6 +2325,7 @@ def main():
             extra2_image_path=capital_tex_path,
             extra2_blur_radius=CAPITAL_TEXTURE_BLUR_RADIUS,
         )
+        viewer_cleanup_paths.append(atlas_path)
         uv_rect_base = uv_rect_plinth_blur
         print(f"[tex] Built atlas: {render_image_path}")
         print(
@@ -2321,6 +2350,7 @@ def main():
                 extra2_image_path=None,
                 extra2_blur_radius=0.0,
             )
+            viewer_cleanup_paths.append(atlas_path)
             # For this fallback atlas, extra rect corresponds to capital texture.
             uv_rect_capital = _tmp_rect
             print(f"[tex] Built atlas (main+capital): {render_image_path}")
@@ -2539,7 +2569,8 @@ def main():
                col_height=col_height if WRAP_COLUMN else 0.0,
                lip_tri_mask=lip_tri_mask,
                statue_tri_mask=statue_tri_mask,
-               statue_tex_rgb=statue_tex_rgb)
+               statue_tex_rgb=statue_tex_rgb,
+               cleanup_paths=viewer_cleanup_paths)
 
 
 if __name__ == "__main__":
