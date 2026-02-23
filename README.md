@@ -15,9 +15,12 @@ Procedural 3D reconstruction workflow for wrapping the [Joshua Roll](https://en.
 
 ## Provenance and Source Notes
 - The Joshua Roll source images in this project come from the [Vatican Library](https://digi.vatlib.it/view/MSS_Pal.gr.431.pt.B).
-- The source images were lightly edited by the repository author to make transitions between individual pictures less visible.
-- The source material used for the image sequence was about 15 cm.
+- The 15 source images were combined and lightly edited by the repository author to make transitions between individual pictures less visible.
 - The depth map used in this repo was created with ComfyUI and Lotus.
+
+## Preview
+![View of triumphal column](media/joshua_roll_triumphal_column.png) ![Another View of triumphal column](media/joshua_roll_triumphal_column_2.png) ![View of normal column](media/joshua_roll_column.png)
+![Video test](media/media/joshua_roll_column.mp4)
 
 ## Main Script
 - Primary entry point: `joshua_roll_render.py`
@@ -44,7 +47,7 @@ Procedural 3D reconstruction workflow for wrapping the [Joshua Roll](https://en.
   - is configured to look more like a conventional architectural column,
   - serves as an alternative to the triumphal-column-oriented defaults.
 
-## Core Features in `joshua_roll_render.py`
+## Core Features
 - Helical wrap of 2D image strip to cylindrical geometry.
 - Depth-based relief generation with:
   - contrast,
@@ -68,22 +71,6 @@ Procedural 3D reconstruction workflow for wrapping the [Joshua Roll](https://en.
   - `both`,
   - `none`.
 
-## Repository Layout
-- `joshua_roll_render.py`: main generation/view/export pipeline.
-- `joshua_roll_render_walking.py`: walkable first-person viewer variant of the pipeline.
-- `joshua_roll_render_column.py`: alternative column-focused configuration/view.
-- `README.md`: project documentation.
-- `jc_images/`: source image slices.
-- Root working assets:
-  - `jc_roll_small.jpg`,
-  - `jc_roll_small_depth.png`,
-  - `plinth_side.png`,
-  - `plinth_side_depth.png`,
-  - `theodosius.glb`.
-- Notes:
-  - `joshua-roll-column-notes.md`,
-  - `depth_to_3d_notes.md`.
-
 ## Installation
 Use Python 3.10+ (3.11/3.12 recommended).
 
@@ -104,7 +91,8 @@ pip install "trimesh[easy]"
 2. Edit the config block at the top of either script:
 - `joshua_roll_render.py` for orbit-style viewing
 - `joshua_roll_render_walking.py` for walkable viewing
-  - `joshua_roll_render_column.py` for a more conventional column-oriented setup
+- `joshua_roll_render_column.py` for a more conventional column-oriented setup
+The texture resolution is downsampled 4x for performance reasons. If you want the high-res goodness, make sure to set downsample=2 (or even 1). Requires powerful pc! 
 3. Run one of:
 
 ```bash
